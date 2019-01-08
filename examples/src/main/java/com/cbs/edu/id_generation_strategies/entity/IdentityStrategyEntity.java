@@ -1,0 +1,23 @@
+package com.cbs.edu.id_generation_strategies.entity;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "identity_strategy_entity")
+@Data
+@NoArgsConstructor
+public class IdentityStrategyEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    public IdentityStrategyEntity(String name) {
+        this.name = name;
+    }
+}
