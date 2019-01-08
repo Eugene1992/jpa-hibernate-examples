@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class Test {
     public static void main(String[] args) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
+        EntityManager entityManager = JPAUtil.getEntityManager("");
 
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();

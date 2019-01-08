@@ -1,10 +1,11 @@
-package com.cbs.edu.subselect.entity;
+package com.cbs.edu.imutable.entity;
 
 import com.cbs.edu.entity.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 
@@ -13,11 +14,12 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bid extends AbstractEntity {
+@Immutable
+public class Page extends AbstractEntity {
 
-    private Integer value;
+    private Integer number;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ITEM_ID")
-    protected Item item;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    protected Book book;
 }

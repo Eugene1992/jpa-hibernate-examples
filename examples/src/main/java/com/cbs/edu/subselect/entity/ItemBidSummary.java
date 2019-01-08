@@ -1,5 +1,6 @@
 package com.cbs.edu.subselect.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.Subselect;
 import org.hibernate.annotations.Synchronize;
@@ -10,12 +11,14 @@ import javax.persistence.Id;
 @Entity
 @Immutable
 @Subselect(
-        value = "select i.ID as ITEMID, i.ITEM_NAME as NAME, " +
-                "count(b.ID) as NUMBEROFBIDS " +
-                "from ITEM i left outer join BID b on i.ID = b.ITEM_ID " +
-                "group by i.ID, i.ITEM_NAME"
+        value = "SELECT item.id AS itemId, item.item_name AS name, " +
+                "COUNT(bid.id) AS numberOfBids " +
+                "FROM \"item\" item LEFT JOIN \"bid\" bid " +
+                "ON item.id = bid.item_id " +
+                "GROUP BY item.id, item.item_name"
 )
 @Synchronize({"Item", "Bid"})
+@Data
 public class ItemBidSummary {
 
     @Id

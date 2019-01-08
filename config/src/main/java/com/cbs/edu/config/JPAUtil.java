@@ -7,10 +7,10 @@ import javax.persistence.Persistence;
 public class JPAUtil {
     private static EntityManagerFactory emFactory;
 
-    public static EntityManager getEntityManager() {
+    public static EntityManager getEntityManager(String name) {
         if (emFactory == null) {
             try {
-                emFactory = Persistence.createEntityManagerFactory("com.cbs.edu.id_generation_strategies");
+                emFactory = Persistence.createEntityManagerFactory(name);
             } catch (Exception e) {
                 e.printStackTrace();
             }

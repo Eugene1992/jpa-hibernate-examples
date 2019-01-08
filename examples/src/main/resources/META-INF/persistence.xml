@@ -27,12 +27,28 @@
 
     <persistence-unit name="sub_select">
 
-        <!--<class>com.cbs.edu.id_generation_strategies.entity.AutoStrategyEntity</class>-->
-        <!--<class>com.cbs.edu.id_generation_strategies.entity.IdentityStrategyEntity</class>-->
-        <!--<class>com.cbs.edu.id_generation_strategies.entity.SequenceStrategyEntity</class>-->
-        <class>com.cbs.edu.id_generation_strategies.entity.TableStrategyEntity1</class>
-        <class>com.cbs.edu.id_generation_strategies.entity.TableStrategyEntity2</class>
-        <class>com.cbs.edu.id_generation_strategies.entity.TableStrategyEntity3</class>
+        <class>com.cbs.edu.subselect.entity.Bid</class>
+        <class>com.cbs.edu.subselect.entity.Item</class>
+        <class>com.cbs.edu.subselect.entity.ItemBidSummary</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.user" value="postgres" />
+            <property name="javax.persistence.jdbc.password" value="root" />
+
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="immutable">
+
+        <class>com.cbs.edu.imutable.entity.Page</class>
+        <class>com.cbs.edu.imutable.entity.Book</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 

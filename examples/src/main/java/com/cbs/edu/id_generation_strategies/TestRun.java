@@ -16,7 +16,7 @@ public class TestRun {
 
     @Before
     public void setUp() {
-        entityManager = JPAUtil.getEntityManager();
+        entityManager = JPAUtil.getEntityManager("com.cbs.edu.id_generation_strategies");
         transaction = entityManager.getTransaction();
         transaction.begin();
     }
