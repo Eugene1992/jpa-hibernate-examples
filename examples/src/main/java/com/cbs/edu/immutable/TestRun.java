@@ -1,20 +1,26 @@
-package com.cbs.edu.imutable;
+package com.cbs.edu.immutable;
 
 import com.cbs.edu.config.JPAUtil;
-import com.cbs.edu.imutable.entity.Book;
-import com.cbs.edu.imutable.entity.Page;
+import com.cbs.edu.immutable.entity.Book;
+import com.cbs.edu.immutable.entity.Page;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.persistence.Basic;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 
+/**
+ * https://www.mkyong.com/hibernate/hibernate-mutable-example-class-and-collection/
+ * http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/
+ */
 public class TestRun {
 
     private static EntityManager entityManager;
@@ -27,7 +33,7 @@ public class TestRun {
         transaction = entityManager.getTransaction();
         transaction.begin();
 
-        book = new Book("World and Peace", null);
+        book = new Book("World and Peace", null, new ArrayList<>(asList("roman", "war-roman")));
 
         entityManager.persist(book);
 
@@ -53,8 +59,14 @@ public class TestRun {
 
     @Test
     public void testPagesCollectionImmutable() {
+        book.getTags().add("some tag");
+        entityManager.persist(book);
+
         Page sixthPage = new Page(6, book);
         entityManager.persist(sixthPage);
+
+        book.getPages().add(sixthPage);
+        entityManager.persist(book);
     }
 
     @After

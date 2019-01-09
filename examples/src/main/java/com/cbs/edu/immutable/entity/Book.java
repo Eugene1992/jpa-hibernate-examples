@@ -1,7 +1,6 @@
-package com.cbs.edu.imutable.entity;
+package com.cbs.edu.immutable.entity;
 
 import com.cbs.edu.entity.AbstractEntity;
-import com.cbs.edu.subselect.entity.Item;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,8 +8,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -20,8 +20,15 @@ import java.util.Set;
 @Immutable
 public class Book extends AbstractEntity {
 
+    @Column
+    @Basic(optional = false, fetch = FetchType.LAZY)
     private String name;
 
+    @Immutable
     @OneToMany(mappedBy = "book")
     private List<Page> pages;
+
+    @Immutable
+    @ElementCollection
+    private Collection<String> tags = new ArrayList<>();
 }
